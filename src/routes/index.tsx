@@ -48,11 +48,11 @@ export const router = createBrowserRouter([
   },
   {
     // Route user has logged in
-    path: "/home",
+    path: "/",
     element: <ProtectedRoute allowedRoles={["USER"]} />,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <HomePage />,
       },
     ],
