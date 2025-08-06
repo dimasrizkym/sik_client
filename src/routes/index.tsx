@@ -2,7 +2,7 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import AuthLayout from "@/layouts/AuthLayout";
 import LoginPage from "@/features/auth/pages/LoginPage";
-// import RegisterPage from "@/features/auth/pages/RegisterPage";
+import RegisterPage from "@/features/auth/pages/RegisterPage";
 import DashboardPage from "@/features/admin/pages/DashboardPage";
 import AdminLayout from "@/layouts/AdminLayout";
 
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "/register",
-            // element: <RegisterPage />,
+            element: <RegisterPage />,
           },
         ],
       },
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
   },
   {
     // Route user has logged in
-    path: "/dashboard",
+    path: "/user",
     element: <ProtectedRoute />,
     children: [
       // { element: <UserLayout />, children: [...] }

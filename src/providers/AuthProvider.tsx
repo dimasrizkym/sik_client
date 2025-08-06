@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Ganti dengan pemanggilan API sesungguhnya
     // await apiRegister(data);
     console.log("Registered with:", data);
-    // Biasanya setelah register berhasil, user akan diarahkan ke halaman login
+    // setelah register berhasil, user akan diarahkan ke halaman login
   };
 
   const logout = () => {
