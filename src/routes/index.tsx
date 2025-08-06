@@ -2,7 +2,7 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import AuthLayout from "@/layouts/AuthLayout";
 import LoginPage from "@/features/auth/pages/LoginPage";
-// import RegisterPage from "@/features/auth/pages/RegisterPage"; // Pastikan file ini sudah dibuat
+// import RegisterPage from "@/features/auth/pages/RegisterPage";
 import DashboardPage from "@/features/admin/pages/DashboardPage";
 import AdminLayout from "@/layouts/AdminLayout";
 
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
         element: <AdminLayout />,
         children: [
           { path: "dashboard", element: <DashboardPage /> },
-          // Rute admin lainnya akan ada di sini
+          // Rute admin lain
           // { path: 'reservations', element: <ReservationPage /> },
         ],
       },

@@ -41,7 +41,7 @@ const LoginPage = () => {
       setError(null);
       await login(values);
       // TODO: Redirect berdasarkan role user
-      navigate("/admin/dashboard"); // Arahkan ke dashboard admin setelah login
+      navigate("/admin/dashboard");
     } catch (err) {
       setError("Email atau password salah. Silakan coba lagi.");
       console.error(err);
