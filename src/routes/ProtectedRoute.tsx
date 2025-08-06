@@ -1,15 +1,29 @@
+import ForbiddenPage from "@/features/fallback/ForbiddenPage";
 import { useAuth } from "@/providers/AuthProvider";
 import { Navigate, Outlet } from "react-router";
 
-const ProtectedRoute = () => {
-  const { isAuthenticated } = useAuth();
+interface ProtectedRouteProps {
+  allowedRoles: Array<"ADMIN" | "USER">;
+}
+
+const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
+  const { isAuthenticated, user } = useAuth();
 
   if (!isAuthenticated) {
-    // Jika tidak terautentikasi, alihkan ke halaman login
+    // 1. Jika belum login, arahkan ke  login
     return <Navigate to="/login" replace />;
   }
 
-  // Jika terautentikasi, tampilkan konten halaman yang dituju (misal: AdminLayout)
+  // 2. Jika sudah login, cek  rolenya
+  const isAllowed = user && allowedRoles.includes(user.role);
+
+  if (!isAllowed) {
+    // 3. Jika role tidak diizinkan, arahkan ke halaman "Forbidden" atau halaman lain
+    // Pilihan: return <Navigate to="/unauthorized" replace />; atau tampilkan halaman 404
+    return <ForbiddenPage />;
+  }
+
+  // 4. Jika semua pemeriksaan lolos, izinkan akses
   return <Outlet />;
 };
 

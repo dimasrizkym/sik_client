@@ -5,10 +5,10 @@ import LoginPage from "@/features/auth/pages/LoginPage";
 import RegisterPage from "@/features/auth/pages/RegisterPage";
 import DashboardPage from "@/features/admin/pages/DashboardPage";
 import AdminLayout from "@/layouts/AdminLayout";
-
 import ProtectedRoute from "./ProtectedRoute";
 import GuestRoute from "./GuestRoute";
-import NotFoundPage from "@/features/NotFoundPage";
+import NotFoundPage from "@/features/fallback/NotFoundPage";
+import HomePage from "@/features/user/pages/Homepage";
 
 export const router = createBrowserRouter([
   {
@@ -32,16 +32,15 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    // Rute untuk Admin yang sudah login
-    // Dibungkus oleh ProtectedRoute
+    // route untuk Admin yang sudah login dibungkus oleh ProtectedRoute
     path: "/admin",
-    element: <ProtectedRoute />,
+    element: <ProtectedRoute allowedRoles={["ADMIN"]} />,
     children: [
       {
         element: <AdminLayout />,
         children: [
           { path: "dashboard", element: <DashboardPage /> },
-          // Rute admin lain
+          // Route admin lain
           // { path: 'reservations', element: <ReservationPage /> },
         ],
       },
@@ -49,10 +48,13 @@ export const router = createBrowserRouter([
   },
   {
     // Route user has logged in
-    path: "/user",
-    element: <ProtectedRoute />,
+    path: "/home",
+    element: <ProtectedRoute allowedRoles={["USER"]} />,
     children: [
-      // { element: <UserLayout />, children: [...] }
+      {
+        path: "/",
+        element: <HomePage />,
+      },
     ],
   },
   {
@@ -61,7 +63,7 @@ export const router = createBrowserRouter([
     element: <Navigate to="/login" replace />,
   },
   {
-    // Catch-all route untuk menangani rute yang tidak ditemukan
+    // Catch-all route untuk menangani route yang tidak ditemukan
     path: "*",
     element: <NotFoundPage />,
   },

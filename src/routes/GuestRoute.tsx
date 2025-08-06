@@ -12,11 +12,13 @@ const GuestRoute = () => {
     // Cek jika user memiliki role 'ADMIN', arahkan ke dashboard admin.
     if (user?.role === "ADMIN") {
       return <Navigate to="/admin/dashboard" replace />;
+    } else {
+      return <Navigate to="/home" replace />;
     }
 
     // Jika tidak, arahkan ke dashboard user biasa (jika ada).
     // Untuk sekarang, kita arahkan ke halaman utama atau dashboard umum.
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // Jika user belum login (adalah "tamu"), izinkan untuk merender halaman

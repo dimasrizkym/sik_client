@@ -39,9 +39,13 @@ const LoginPage = () => {
   const onSubmit = async (values: LoginValues) => {
     try {
       setError(null);
-      await login(values);
-      // TODO: Redirect berdasarkan role user
-      navigate("/admin/dashboard");
+      const response = await login(values);
+      console.log("Login successful:", response);
+      if (response.role === "ADMIN") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       setError("Email atau password salah. Silakan coba lagi.");
       console.error(err);

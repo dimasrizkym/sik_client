@@ -12,6 +12,7 @@ import {
 //   register as apiRegister,
 // } from "@/api/services/auth.service";
 import type { LoginValues, RegisterValues } from "@/lib/schemas.ts";
+// import apiClient from "@/api/axios";
 
 interface User {
   id: string;
@@ -24,7 +25,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
   token: string | null;
-  login: (credentials: LoginValues) => Promise<void>;
+  login: (credentials: LoginValues) => Promise<User>;
   register: (data: RegisterValues) => Promise<void>;
   logout: () => void;
   isLoading: boolean;
@@ -83,6 +84,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("authToken", mockResponse.token);
     setToken(mockResponse.token);
     setUser(mockResponse.user);
+
+    return mockResponse.user; // Kembalikan data user
   };
 
   const register = async (data: RegisterValues) => {
