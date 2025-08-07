@@ -11,13 +11,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export type Reservation = {
   id: string;
   namaJenazah: string;
   tanggalReservasi: string;
   statusPembayaran: "LUNAS" | "BELUM BAYAR" | "KADALUARSA";
-  statusMakam: "PRA-BOOKING" | "SUDAH WAFAT";
+  statusMakam: "PRA-BOOKING" | "SUDAH DIKUBUR";
+  paymentProofUrl: string;
 };
 
 const rawData: Reservation[] = [
@@ -26,7 +35,8 @@ const rawData: Reservation[] = [
     namaJenazah: "Ahmad Subarjo",
     tanggalReservasi: "2025-08-01",
     statusPembayaran: "LUNAS",
-    statusMakam: "SUDAH WAFAT",
+    statusMakam: "SUDAH DIKUBUR",
+    paymentProofUrl: "https://picsum.photos/200",
   },
   {
     id: "RES-002",
@@ -34,8 +44,32 @@ const rawData: Reservation[] = [
     tanggalReservasi: "2025-08-03",
     statusPembayaran: "BELUM BAYAR",
     statusMakam: "PRA-BOOKING",
+    paymentProofUrl: "https://picsum.photos/200",
   },
-  // Tambahkan data lainnya
+  {
+    id: "RES-003",
+    namaJenazah: "Budi Santoso",
+    tanggalReservasi: "2025-08-05",
+    statusPembayaran: "KADALUARSA",
+    statusMakam: "SUDAH DIKUBUR",
+    paymentProofUrl: "https://picsum.photos/200",
+  },
+  {
+    id: "RES-004",
+    namaJenazah: "Dewi Lestari",
+    tanggalReservasi: "2025-08-07",
+    statusPembayaran: "LUNAS",
+    statusMakam: "PRA-BOOKING",
+    paymentProofUrl: "https://picsum.photos/200",
+  },
+  {
+    id: "RES-005",
+    namaJenazah: "Sartika",
+    tanggalReservasi: "2025-08-10",
+    statusPembayaran: "BELUM BAYAR",
+    statusMakam: "SUDAH DIKUBUR",
+    paymentProofUrl: "https://picsum.photos/200",
+  },
 ];
 
 export default function TableReservation() {
@@ -81,8 +115,8 @@ export default function TableReservation() {
           status === "LUNAS"
             ? "default"
             : status === "BELUM BAYAR"
-            ? "destructive"
-            : "secondary";
+            ? "secondary"
+            : "outline";
         return <Badge variant={variant}>{status}</Badge>;
       },
     },
@@ -98,9 +132,43 @@ export default function TableReservation() {
       header: "Aksi",
       cell: ({ row }) => (
         <div className="flex gap-2">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="sm" variant="outline">
+                Bukti Pembayaran
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Bukti Pembayaran</DialogTitle>
+                <DialogDescription>
+                  Untuk reservasi ID:{" "}
+                  <span className="font-semibold">{row.original.id}</span> dan
+                  nama jenazah:{" "}
+                  <span className="font-semibold">
+                    {row.original.namaJenazah}
+                  </span>
+                </DialogDescription>
+              </DialogHeader>
+
+              {row.original.paymentProofUrl ? (
+                <img
+                  src={row.original.paymentProofUrl}
+                  alt="Bukti Pembayaran"
+                  className="w-full rounded-md border"
+                />
+              ) : (
+                <p className="text-sm text-muted-foreground italic">
+                  Belum ada bukti pembayaran.
+                </p>
+              )}
+            </DialogContent>
+          </Dialog>
+
           <Button
             size="sm"
             variant="outline"
+            disabled={row.original.statusPembayaran !== "BELUM BAYAR"}
             onClick={() => alert(`Konfirmasi Pembayaran: ${row.original.id}`)}
           >
             Konfirmasi
@@ -143,7 +211,7 @@ export default function TableReservation() {
           <SelectContent>
             <SelectItem value="ALL">Semua</SelectItem>
             <SelectItem value="PRA-BOOKING">Pra-Booking</SelectItem>
-            <SelectItem value="SUDAH WAFAT">Sudah Wafat</SelectItem>
+            <SelectItem value="SUDAH DIKUBUR">SUDAH DIKUBUR</SelectItem>
           </SelectContent>
         </Select>
 
@@ -161,16 +229,14 @@ export default function TableReservation() {
             <SelectItem value="KADALUARSA">Kadaluarsa</SelectItem>
           </SelectContent>
         </Select>
-
         <Button
-          variant="ghost"
+          variant="secondary"
           className="md:flex-1 w-full"
           onClick={resetFilter}
         >
           Reset
         </Button>
       </div>
-
       <DataTable columns={columns} data={filteredData} />
     </div>
   );
