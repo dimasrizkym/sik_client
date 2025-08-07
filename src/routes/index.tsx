@@ -8,12 +8,17 @@ import AdminLayout from "@/layouts/AdminLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import GuestRoute from "./GuestRoute";
 import NotFoundPage from "@/features/fallback/NotFoundPage";
-import HomePage from "@/features/user/pages/Homepage";
+import DeceasedsPage from "@/features/admin/pages/DeceasedsPage";
+import GraveBlocksPage from "@/features/admin/pages/GraveBlocksPage";
+import CemeteryMapsPage from "@/features/admin/pages/CemeteryMapsPage";
+import ReservationsPage from "@/features/admin/pages/ReservationsPage";
+import UserManagementPage from "@/features/admin/pages/UserMangementPage";
+import ReportsPage from "@/features/admin/pages/ReportsPage";
+import HomePage from "@/features/user/pages/HomePage";
 
 export const router = createBrowserRouter([
   {
     // Route Tamu (Login, Register)
-    // Dibungkus oleh GuestRoute
     element: <GuestRoute />,
     children: [
       {
@@ -40,8 +45,12 @@ export const router = createBrowserRouter([
         element: <AdminLayout />,
         children: [
           { path: "dashboard", element: <DashboardPage /> },
-          // Route admin lain
-          // { path: 'reservations', element: <ReservationPage /> },
+          { path: "reservations", element: <ReservationsPage /> },
+          { path: "deceaseds", element: <DeceasedsPage /> },
+          { path: "grave-blocks", element: <GraveBlocksPage /> },
+          { path: "cemetery-maps", element: <CemeteryMapsPage /> },
+          { path: "user-management", element: <UserManagementPage /> },
+          { path: "reports", element: <ReportsPage /> },
         ],
       },
     ],
