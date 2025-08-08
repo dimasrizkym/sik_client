@@ -1,5 +1,5 @@
 import apiClient from "@/api/axios";
-import type { LoginValues, RegisterValues } from "@/validations/schemas";
+import type { LoginValues, RegisterValues } from "@/validations/AuthSchemas";
 
 export const login = (credentials: LoginValues) => {
   return apiClient.post("/auth/login", credentials);
