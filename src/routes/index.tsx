@@ -15,6 +15,7 @@ import ReservationsPage from "@/features/admin/pages/ReservationsPage";
 import UserManagementPage from "@/features/admin/pages/UserMangementPage";
 import ReportsPage from "@/features/admin/pages/ReportsPage";
 import HomePage from "@/features/user/pages/HomePage";
+import CemeteryDataPage from "@/features/admin/pages/CemeteryDataPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,7 @@ export const router = createBrowserRouter([
           { path: "reservations", element: <ReservationsPage /> },
           { path: "deceaseds", element: <DeceasedsPage /> },
           { path: "grave-blocks", element: <GraveBlocksPage /> },
+          { path: "cemetery-data", element: <CemeteryDataPage /> },
           { path: "cemetery-maps", element: <CemeteryMapsPage /> },
           { path: "user-management", element: <UserManagementPage /> },
           { path: "reports", element: <ReportsPage /> },

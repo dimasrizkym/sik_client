@@ -162,6 +162,11 @@ const data = {
       icon: BrickWall,
     },
     {
+      name: "Data Makam",
+      url: "/admin/cemetery-data",
+      icon: Map,
+    },
+    {
       name: "Peta Makam",
       url: "/admin/cemetery-maps",
       icon: Map,
