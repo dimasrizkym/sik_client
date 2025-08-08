@@ -11,7 +11,7 @@ import {
 //   login as apiLogin,
 //   register as apiRegister,
 // } from "@/api/services/auth.service";
-import type { LoginValues, RegisterValues } from "@/lib/schemas.ts";
+import type { LoginValues, RegisterValues } from "@/validations/schemas";
 // import apiClient from "@/api/axios";
 
 interface User {
