@@ -18,7 +18,7 @@ const GraveBlocksPage = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="mb-2">Daftar Blok Makam</CardTitle>
+                <CardTitle className="mb-1">Daftar Blok Makam</CardTitle>
                 <CardDescription>Kelola Blok Makam</CardDescription>
               </div>
               <Button variant={"default"}>Tambah Blok Makam</Button>

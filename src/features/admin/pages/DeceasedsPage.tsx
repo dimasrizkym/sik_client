@@ -18,7 +18,7 @@ const DeceasedsPage = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle>Daftar Jenazah</CardTitle>
+                <CardTitle className="mb-1">Daftar Jenazah</CardTitle>
                 <CardDescription>Kelola data jenazah</CardDescription>
               </div>
               <Button variant={"default"}>Tambah Jenazah</Button>

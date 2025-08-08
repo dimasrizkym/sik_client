@@ -24,6 +24,7 @@ export type Reservation = {
   id: string;
   namaJenazah: string;
   tanggalReservasi: string;
+  tempatMakam: string;
   statusPembayaran: "LUNAS" | "BELUM BAYAR" | "KADALUARSA";
   statusMakam: "PRA-BOOKING" | "SUDAH DIKUBUR";
   paymentProofUrl: string;
@@ -34,6 +35,7 @@ const rawData: Reservation[] = [
     id: "RES-001",
     namaJenazah: "Ahmad Subarjo",
     tanggalReservasi: "2025-08-01",
+    tempatMakam: "Blok A No. 1",
     statusPembayaran: "LUNAS",
     statusMakam: "SUDAH DIKUBUR",
     paymentProofUrl: "https://picsum.photos/200",
@@ -42,6 +44,7 @@ const rawData: Reservation[] = [
     id: "RES-002",
     namaJenazah: "Siti Aminah",
     tanggalReservasi: "2025-08-03",
+    tempatMakam: "Blok B No. 2",
     statusPembayaran: "BELUM BAYAR",
     statusMakam: "PRA-BOOKING",
     paymentProofUrl: "https://picsum.photos/200",
@@ -50,6 +53,7 @@ const rawData: Reservation[] = [
     id: "RES-003",
     namaJenazah: "Budi Santoso",
     tanggalReservasi: "2025-08-05",
+    tempatMakam: "Blok C No. 3",
     statusPembayaran: "KADALUARSA",
     statusMakam: "SUDAH DIKUBUR",
     paymentProofUrl: "https://picsum.photos/200",
@@ -58,6 +62,7 @@ const rawData: Reservation[] = [
     id: "RES-004",
     namaJenazah: "Dewi Lestari",
     tanggalReservasi: "2025-08-07",
+    tempatMakam: "Blok D No. 4",
     statusPembayaran: "LUNAS",
     statusMakam: "PRA-BOOKING",
     paymentProofUrl: "https://picsum.photos/200",
@@ -66,6 +71,7 @@ const rawData: Reservation[] = [
     id: "RES-005",
     namaJenazah: "Sartika",
     tanggalReservasi: "2025-08-10",
+    tempatMakam: "Blok D No. 5",
     statusPembayaran: "BELUM BAYAR",
     statusMakam: "SUDAH DIKUBUR",
     paymentProofUrl: "https://picsum.photos/200",
@@ -106,27 +112,9 @@ export default function TableReservation() {
       },
     },
     { accessorKey: "tanggalReservasi", header: "Tanggal" },
-    {
-      accessorKey: "statusPembayaran",
-      header: "Status Bayar",
-      cell: ({ row }) => {
-        const status = row.original.statusPembayaran;
-        const variant =
-          status === "LUNAS"
-            ? "default"
-            : status === "BELUM BAYAR"
-            ? "secondary"
-            : "outline";
-        return <Badge variant={variant}>{status}</Badge>;
-      },
-    },
-    {
-      accessorKey: "statusMakam",
-      header: "Status Makam",
-      cell: ({ row }) => (
-        <Badge variant="outline">{row.original.statusMakam}</Badge>
-      ),
-    },
+    { accessorKey: "tempatMakam", header: "Tempat Makam" },
+    { accessorKey: "statusPembayaran", header: "Status Bayar" },
+    { accessorKey: "statusMakam", header: "Status Makam" },
     {
       id: "actions",
       header: "Aksi",

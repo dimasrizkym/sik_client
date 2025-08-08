@@ -24,6 +24,7 @@ type Jenazah = {
   tglKematian: string;
   tglPemakaman: string;
   agama: string;
+  tempatMakam: string;
   statusBayar: string;
   statusMakam: string;
 };
@@ -40,6 +41,7 @@ const data: Jenazah[] = [
     tglKematian: "2025-08-01",
     tglPemakaman: "2025-08-02",
     agama: "Islam",
+    tempatMakam: "Blok A No. 1",
     statusBayar: "Sudah Bayar",
     statusMakam: "Sudah Dimakamkan",
   },
@@ -53,6 +55,7 @@ const data: Jenazah[] = [
     tglKematian: "2025-07-25",
     tglPemakaman: "2025-07-27",
     agama: "Kristen",
+    tempatMakam: "Blok B No. 2",
     statusBayar: "Belum Bayar",
     statusMakam: "Belum Dimakamkan",
   },
@@ -69,6 +72,7 @@ const columns: ColumnDef<Jenazah>[] = [
   { accessorKey: "tglKematian", header: "Tgl Kematian" },
   { accessorKey: "tglPemakaman", header: "Tgl Pemakaman" },
   { accessorKey: "agama", header: "Agama" },
+  { accessorKey: "tempatMakam", header: "Tempat Makam" },
   { accessorKey: "statusBayar", header: "Status Bayar" },
   { accessorKey: "statusMakam", header: "Status Makam" },
   {
